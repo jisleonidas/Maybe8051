@@ -1,0 +1,38 @@
+00 - HLT
+
+01 - MOV A, #data
+02 - MOV B, #data
+03 - MOV R0, #data
+04 - MOV R1, #data
+05 - MOV R2, #data
+06 - MOV R3, #data
+07 - MOV R4, #data
+08 - MOV R5, #data
+09 - MOV R6, #data
+0A - MOV R7, #data
+
+0B - ADD A, #data
+
+0C - MOV B, A
+0D - MOV R0, A
+0E - MOV R1, A
+0F - MOV R2, A
+10 - MOV R3, A
+11 - MOV R4, A
+12 - MOV R5, A
+13 - MOV R6, A
+14 - MOV R7, A
+
+15 - PUSH A
+16 - POP A
+
+17 - MOV DPTR, #data
+18 - MOVX A, @DPTR
+19 - MOVX @DPTR, A
+
+1A - INC DPTR
+
+1B - SJMP
+
+1C - MUL AB
+1D - DIV AB

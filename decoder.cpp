@@ -8,8 +8,6 @@
 #include "header.hpp"
 #include "opcodes.hpp"
 
-#define DEBUG
-
 void read_bin(const char *fname, bool is_data)
 {
     std::streampos size;
@@ -28,14 +26,20 @@ void read_bin(const char *fname, bool is_data)
     std::cout << "----------------------------------\n";
     std::cout << "READ BIN:\n";
     std::cout << "----------------------------------\n";
+    if (!is_data)
+        std::cout << "Loading " << std::setfill('0') << std::setw(4) << std::hex << (int) size
+            << " bytes into code mem.\n";
+    else
+        std::cout << "Loading " << std::setfill('0') << std::setw(4) << std::hex << (int) size
+            << " bytes into data mem.\n";
     for (int i = 0; i < size; i++) {
         if (!is_data) {
             code[i] = memblock[i];
-            std::cout << "Loading " << (int) code[i] << " into memory.\n";
+            // std::cout << "Loading " << (int) code[i] << " into memory.\n";
         }
         else {
             data[i] = memblock[i];
-            std::cout << "Loading " << (int) data[i] << " into memory.\n";
+            // std::cout << "Loading " << (int) data[i] << " into memory.\n";
         }
     }
     std::cout << "----------------------------------\n\n";

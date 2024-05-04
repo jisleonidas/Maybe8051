@@ -16,4 +16,6 @@ extern unsigned char b; // Multiply and divide
 
 extern unsigned char *r[8];
 
+#define DEBUG
+
 #endif

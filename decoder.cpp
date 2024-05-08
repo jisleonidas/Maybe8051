@@ -62,12 +62,12 @@ void run()
         unsigned char op = code[pc];
         std::cout << "PC: " << "0x" << std::setfill('0') << std::setw(2) << std::hex << pc << "; ";
         std::cout << "OP: " << "0x" << std::setfill('0') << std::setw(2) << std::hex << (int) op << "\n";
-        if (op == 0) {
-            std::cout << "----------------------------------\n\n";
-            return;
-        }
-        else
-            (*lut[op])();
+        // if (op == 0) {
+        //     std::cout << "----------------------------------\n\n";
+        //     return;
+        // }
+        // else
+        (*lut[op])();
     }
     std::cout << "----------------------------------\n\n";
 }

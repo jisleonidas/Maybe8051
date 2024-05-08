@@ -1,6 +1,208 @@
 #include <cstdint>
+#include <iostream>
 #include "header.hpp"
 #include "internal.hpp"
+
+void nop()
+{
+    pc++;
+}
+
+// Todo
+void ajmp()
+{
+    pc++;
+    pc++;
+}
+
+void ljmp()
+{
+    pc++;
+    char high_byte = code[pc];
+    pc++;
+    char low_byte = code[pc];
+    pc = ((int) high_byte) << 8;
+    pc += (int) low_byte;
+    std::cout << "PC: " << pc << "\n";
+}
+
+void rr_a()
+{
+    if (a << 7)
+        a = (a >> 1) + 128;
+    else
+        a = (a >> 1);
+    pc++;
+}
+
+// No carry set when value rolls over from 255 to 0.
+void inc_a()
+{
+    a += 1;
+    pc++;
+}
+
+void inc_direct()
+{
+    pc++;
+    int loc = code[pc];
+    ram[loc]++;
+    pc++;
+}
+
+void inc_atr0()
+{
+    ram[*(r[0])]++;
+    pc++;
+}
+
+void inc_atr1()
+{
+    ram[*r[1]]++;
+    pc++;
+}
+
+void inc_r0()
+{
+    (*r[0])++;
+    pc++;
+}
+
+void inc_r1()
+{
+    (*r[1])++;
+    pc++;
+}
+
+void inc_r2()
+{
+    (*r[2])++;
+    pc++;
+}
+
+void inc_r3()
+{
+    (*r[3])++;
+    pc++;
+}
+
+void inc_r4()
+{
+    (*r[4])++;
+    pc++;
+}
+
+void inc_r5()
+{
+    (*r[5])++;
+    pc++;
+}
+
+void inc_r6()
+{
+    (*r[6])++;
+    pc++;
+}
+
+void inc_r7()
+{
+    (*r[7])++;
+    pc++;
+}
+
+void jbc()
+{
+    pc += 3;
+}
+
+void acall()
+{
+    pc += 2;
+}
+
+void lcall()
+{
+    pc += 3;
+}
+
+void rrc_a()
+{
+    pc++;
+}
+
+void dec_a()
+{
+    a--;
+    pc++;
+}
+
+void dec_direct()
+{
+    pc++;
+    int loc = code[pc];
+    ram[loc]--;
+    pc++;
+}
+
+void dec_atr0()
+{
+    ram[*(r[0])]--;
+    pc++;
+}
+
+void dec_atr1()
+{
+    ram[*r[1]]--;
+    pc++;
+}
+
+void dec_r0()
+{
+    (*r[0])--;
+    pc++;
+}
+
+void dec_r1()
+{
+    (*r[1])--;
+    pc++;
+}
+
+void dec_r2()
+{
+    (*r[2])--;
+    pc++;
+}
+
+void dec_r3()
+{
+    (*r[3])--;
+    pc++;
+}
+
+void dec_r4()
+{
+    (*r[4])--;
+    pc++;
+}
+
+void dec_r5()
+{
+    (*r[5])--;
+    pc++;
+}
+
+void dec_r6()
+{
+    (*r[6])--;
+    pc++;
+}
+
+void dec_r7()
+{
+    (*r[7])--;
+    pc++;
+}
 
 void mov_a_data()
 {
@@ -131,7 +333,38 @@ void div_ab()
 void empty() {}
 
 void (*lut[])() = {
-    empty,
+    nop,
+    ajmp,
+    ljmp,
+    rr_a,
+    inc_a,
+    inc_direct,
+    inc_atr0,
+    inc_atr1,
+    inc_r0,
+    inc_r1,
+    inc_r2,
+    inc_r3,
+    inc_r4,
+    inc_r5,
+    inc_r6,
+    inc_r7,
+    jbc,
+    acall,
+    lcall,
+    rrc_a,
+    dec_a,
+    dec_direct,
+    dec_atr0,
+    dec_atr1,
+    dec_r0,
+    dec_r1,
+    dec_r2,
+    dec_r3,
+    dec_r4,
+    dec_r5,
+    dec_r6,
+    dec_r7,
     mov_a_data,
     mov_b_data,
     mov_r0_data,

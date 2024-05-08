@@ -37,11 +37,16 @@ void dump_ram()
     std::cout << "----------------------------------\n\n";
 }
 
-int main()
+int main(int argc, char *argv[])
 {
     dump();
-    read_bin("main.bin", false);
-    read_bin("data.bin", true);
+    if (argc == 2) { // Only program file.
+        read_bin(argv[1], false);
+    }
+    else if (argc == 3) {
+        read_bin(argv[1], false);
+        read_bin(argv[2], true);
+    }
     run();
     dump();
     dump_ram();

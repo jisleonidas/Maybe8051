@@ -23,7 +23,6 @@ void ljmp()
     char low_byte = code[pc];
     pc = ((int) high_byte) << 8;
     pc += (int) low_byte;
-    std::cout << "PC: " << pc << "\n";
 }
 
 void rr_a()
